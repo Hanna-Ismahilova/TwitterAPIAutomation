@@ -1,9 +1,7 @@
 ﻿using APIAutomation_HW.Apis.Models;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using RestSharp;
 using RestSharp.Serialization.Json;
-using System.Collections.Generic;
 
 namespace APIAutomation_HW.Apis
 {
@@ -33,7 +31,7 @@ namespace APIAutomation_HW.Apis
 
         private static T DeserialiseResponse<T>()
         {
-            var deserialize = new JsonDeserializer();
+            var deserialize = new JsonSerializer();
             return deserialize.Deserialize<T>(Response);
            
         }
@@ -41,14 +39,16 @@ namespace APIAutomation_HW.Apis
 
         public static void AssertGetResponse(string id, string text)
         {
-            var output = DeserialiseResponse<List<GetTweetModel>>();
-            var tweetId = output[0].Id;
-            var tweetTitleText = output[1].Text;
+            var output = DeserialiseResponse<GetTweetModel>();
+            
+            var tweetId = output.Data?.Id; //null check "?". do that for each test
+            var tweetTitleText = output.Data?.Text;
 
             Assert.That(tweetId, Is.EqualTo(id));
             Assert.That(tweetTitleText, Is.EqualTo(text));    
-
         }
+
+
 
     }
 }

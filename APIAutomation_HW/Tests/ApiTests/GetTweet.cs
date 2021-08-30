@@ -23,14 +23,8 @@ namespace APIAutomation_HW.Steps
             Assert.That(Response.Content, Is.Not.Empty);
             Assert.That(Response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
             Assert.That(Response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
-            Assert.That(Response.Content.Contains("\"id\":\"1431598792743301128\""));
-            Assert.That(Response.Content.Contains("\"text\":\"Test\""));
 
-            
-            //TweetLookup.AssertGetResponse("1431598792743301128", "Test");
-            //TweetLookup.GetResponseOfResource(Response.Content);
+            TweetLookup.AssertGetResponse("1431598792743301128", "Test");
         }
-
-
     }
 }

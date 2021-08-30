@@ -1,4 +1,5 @@
 ﻿using APIAutomation_HW.Apis;
+using APIAutomation_HW.Apis.Api;
 using NUnit.Framework;
 
 namespace APIAutomation_HW.Tests.ApiTests
@@ -20,16 +21,15 @@ namespace APIAutomation_HW.Tests.ApiTests
             public static void GET_UserById_NotFound_Success()
             {
 
-                TweetLookup.GetSingleTweet();
+                UserLookup.GetUserById();
 
                 Assert.That(Response.ErrorMessage, Is.Not.Empty);
                 Assert.That(Response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
                 Assert.That(Response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
-                Assert.That(Response.Content.Contains("\"id\":\"1431598792743301128\""));
-                Assert.That(Response.Content.Contains("\"text\":\"Test\""));
 
 
-                //TweetLookup.AssertGetResponse("1431598792743301128", "Test");
+
+                UserLookup.AssertGetResponse("Could not find user with id: [2244994946].", "Not Found Error", "2244994946");
                 //TweetLookup.GetResponseOfResource(Response.Content);
             }
 

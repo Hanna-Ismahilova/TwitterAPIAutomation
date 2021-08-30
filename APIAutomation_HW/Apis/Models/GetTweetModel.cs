@@ -1,15 +1,11 @@
-﻿namespace APIAutomation_HW.Apis.Models
+﻿using System.Collections.Generic;
+
+namespace APIAutomation_HW.Apis.Models
 {
     public class GetTweetModel
-    {
-        public GetTweetModel()
-        {
+    {  
+        public GetTweetDataModel Data { get; set; }
 
-
-        }
-
-        public string Id { get; set; }
-        public string Text { get; set; }
     }
 }
 
