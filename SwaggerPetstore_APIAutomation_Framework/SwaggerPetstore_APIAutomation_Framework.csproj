@@ -1,13 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <ApplicationIcon />
-
-    <Win32Resource />
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +15,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="RestSharp" Version="106.12.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utils\CommonMethods\" />
   </ItemGroup>
 
 </Project>

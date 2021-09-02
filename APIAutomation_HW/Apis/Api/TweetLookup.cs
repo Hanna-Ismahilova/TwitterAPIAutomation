@@ -2,44 +2,39 @@
 using NUnit.Framework;
 using RestSharp;
 using RestSharp.Serialization.Json;
+using System.Collections.Generic;
 
 namespace APIAutomation_HW.Apis
 {
     public class TweetLookup : BaseApiTests
     {
-        public static void GetSingleTweet()
+        public IRestResponse GetSingleTweet()
         {
-            Request = new RestRequest("/2/tweets/1431598792743301128", Method.GET);
-            GetResponse();
+            var request = new RestRequest("/2/tweets/1431598792743301128", Method.GET);
+            return GetResponse(request);
         }
 
-        public static void GetResponseOfResource(string apiResource)
-        {
-            Request = new RestRequest
-            {
-                Resource = apiResource
-            };
-            GetResponse();
-        }
+        //TODO: move to CommonMethods
 
-        private static void GetResponse()
+        private IRestResponse GetResponse(IRestRequest request)
         {
 
-            Response = Client.Execute(Request);
+            return Client.Execute<List<GetUserByIdModel>>(request);
 
         }
 
-        private static T DeserialiseResponse<T>()
+        //TODO: move to CommonMethods
+        private T DeserialiseResponse<T>(IRestResponse response)
         {
             var deserialize = new JsonSerializer();
-            return deserialize.Deserialize<T>(Response);
+            return deserialize.Deserialize<T>(response);
            
         }
 
 
-        public static void AssertGetResponse(string id, string text)
+        public void AssertGetResponse(string id, string text, IRestResponse response)
         {
-            var output = DeserialiseResponse<GetTweetModel>();
+            var output = DeserialiseResponse<GetTweetModel>(response);
             
             var tweetId = output.Data?.Id; //null check "?". do that for each test
             var tweetTitleText = output.Data?.Text;

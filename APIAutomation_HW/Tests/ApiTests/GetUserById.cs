@@ -4,35 +4,46 @@ using NUnit.Framework;
 
 namespace APIAutomation_HW.Tests.ApiTests
 {
-    public class GetUserById
+    [TestFixture, Category("API_Smoke")]
+    public class GetUserById : BaseApiTests
     {
-        [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("User_Lookup")]
-        public class GetTweet : BaseApiTests
+        [Category("User_Lookup")]
 
+        [SetUp]
+        public void Setup()
         {
-            [SetUp]
-            public void Setup()
-            {
-                SetBaseUriAndAuth();
-                AuthTwitter();
-            }
-
-            [Test, Description("Endpoint: /users/{:id}. Used: Authentication to Twitter")]
-            public static void GET_UserById_NotFound_Success()
-            {
-
-                UserLookup.GetUserById();
-
-                Assert.That(Response.ErrorMessage, Is.Not.Empty);
-                Assert.That(Response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
-                Assert.That(Response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
-
-
-
-                UserLookup.AssertGetResponse("Could not find user with id: [2244994946].", "Not Found Error", "2244994946");
-                //TweetLookup.GetResponseOfResource(Response.Content);
-            }
-
+            AuthTwitter();
         }
+
+        [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
+        public static void GET_UserById_200_NotFound()
+        {
+            var userLookup = new UserLookup();
+            var response = userLookup.GetUserById_NotFound();
+
+            Assert.That(response.ErrorMessage, Is.Not.Empty);
+            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+            Assert.That(response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
+
+            userLookup.AssertGetResponse_GetUserById_NotFound("Could not find user with id: [2244994946].", "Not Found Error", "2244994946", response);
+        }
+
+        [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
+        public static void GET_UserById_200_DefaultPayload()
+        {
+            var userLookup = new UserLookup();
+            var response = userLookup.GetUserById_DefaultPayload();
+            
+
+            Assert.That(response.ErrorMessage, Is.Not.Empty);
+            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
+            Assert.That(response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
+
+            userLookup.AssertGetResponse_GetUserById_DefaultPayload("2244994945", "Twitter Dev", "TwitterDev", response);
+        }
+
+
+
     }
 }
+

@@ -1,6 +1,5 @@
 ﻿using APIAutomation_HW.Apis;
 using NUnit.Framework;
-using TechTalk.SpecFlow;
 
 namespace APIAutomation_HW.Steps.ApiSteps
 {
@@ -10,17 +9,19 @@ namespace APIAutomation_HW.Steps.ApiSteps
     {
         [SetUp]
         public void Setup()
-        {
-            SetBaseUriAndAuth();
+        {         
             AuthTwitter();
         }
 
         [Test, Description("Endpoint: /1.1/statuses/update.json. Used: Authentication to Twitter")]
-        public static void POST_SingleTweet()
+        public void POST_SingleTweet()
         {
-            Tweet.PostTweet(message: "");
-            Tweet.GetResponseOfResource(apiResource: "");
-            Tweet.AssertTweetWasPosted(tweet: "");
+            var tweetPost = new PostDataConfig();
+
+            var tweet = new Tweet();
+            var response = tweet.PostTweet(tweetPost.CreateANewTweetModel.Text);
+            //tweet.GetResponseOfResource(response);
+            tweet.AssertTweetWasPosted("Hello Twitter! This is my first created tweet via C#, RestSharp", response );
         }
 
 

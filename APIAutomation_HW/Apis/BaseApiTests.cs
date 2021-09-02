@@ -6,11 +6,12 @@ namespace APIAutomation_HW.Apis
 {
     public class BaseApiTests : Settings
     {
-        public static RestClient Client;
-        public static IRestRequest Request;
-        public static IRestResponse Response;
+        public RestClient Client;
 
-        public static void SetBaseUriAndAuth()
+        //public  IRestRequest Request;
+        //public  IRestResponse Response;
+
+        public BaseApiTests()
         {
             Client = new RestClient(baseUrl)
             {

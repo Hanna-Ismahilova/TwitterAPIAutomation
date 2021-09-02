@@ -3,9 +3,9 @@
     public class Settings
     {
         public static readonly string baseUrl = "https://api.twitter.com";
-        public static readonly string consumerKey = "ZggRnrvjAza7jJvdnVGkxFri2";
-        public static readonly string consumerSecret = "4hiCktxGg9u9jpgv7PiHyFP9SjGDGgrydRBNzYeTx6IIzm0sWL";
-        public static readonly string accessToken = "1431259443673681929-JV1KCLEXYtg3CylkAgBzQ391m5oGsD";
-        public static readonly string accessTokenSecret = "IYPkaKMOkYa2vRoFYXQQuTK0N0C67h2KJhw5YAYDxuXVP";
+        public static readonly string consumerKey = "isFtzuVFDOl20WZDHTqXlok9X";
+        public static readonly string consumerSecret = "ITajshUha8NrgwoQuTsQZWKlTEiyeKzwHvJ4gaWauZInJ8BKo2";
+        public static readonly string accessToken = "1431259443673681929-hzMv05kRTKe7Gnv5I8zyuvDjLWOuek";
+        public static readonly string accessTokenSecret = "qgbtD398fu3a3nZgU7NR2Mc8MtQ4wLSzuI5Yb4TMZ9PhO";
     }
 }

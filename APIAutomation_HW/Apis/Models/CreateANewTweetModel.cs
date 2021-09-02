@@ -1,12 +1,8 @@
 ﻿namespace APIAutomation_HW.Apis.Models
 {
-    public class HomeTimeline
+    public class CreateANewTweetModel
     {
-        public HomeTimeline()
-        {
-
-        }
-
         public string Text { get; set; }
+
     }
 }

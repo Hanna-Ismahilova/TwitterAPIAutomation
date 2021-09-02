@@ -3,44 +3,43 @@ using NUnit.Framework;
 using RestSharp;
 using RestSharp.Serialization.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace APIAutomation_HW.Apis
 {
     public class Tweet : BaseApiTests
     {
-        public static void PostTweet(string message)
+
+        public IRestResponse PostTweet(string message)
         {
-            Request = new RestRequest("/1.1/statuses/update.json", Method.POST);
-            Request.AddParameter("status", message, ParameterType.GetOrPost);
-            GetResponse();
+            var request = new RestRequest("1.1/statuses/update.json", Method.POST);
+            request.AddParameter("status", message, ParameterType.GetOrPost);
+            return GetResponse(request);
         }
 
-        public static void GetResponseOfResource(string apiResource)
+        public IRestResponse GetResponseOfResource(string apiResource)
         {
-            Request = new RestRequest
-            {
-                Resource = apiResource
-            };
-            GetResponse();
+            var request = new RestRequest();
+            request.Resource = apiResource;
+            return GetResponse(request);
         }
 
-        private static void GetResponse()
+        private IRestResponse GetResponse(IRestRequest request)
         {
-           
-            Response = Client.Execute(Request);
-            
+            return Client.Execute(request);
         }
 
-        private static T DeserialiseResponse<T>()
+        private T DeserialiseResponse<T>(IRestResponse response)
         {
-            JsonDeserializer jsonDeserializer = new();
-            return jsonDeserializer.Deserialize<T>(Response);
+            JsonDeserializer jsonDeserializer = new JsonDeserializer();
+            return jsonDeserializer.Deserialize<T>(response);
         }
 
-        public static void AssertTweetWasPosted(string tweet)
+        public void AssertTweetWasPosted(string tweet, IRestResponse response)
         {
-            var result = DeserialiseResponse<List<HomeTimeline>>();
-            Assert.True(result[0].Text == tweet);
+            var result = DeserialiseResponse<List<CreateANewTweetModel>>(response);
+            Assert.True(result.First().Text == tweet);
         }
     }
 }
+
