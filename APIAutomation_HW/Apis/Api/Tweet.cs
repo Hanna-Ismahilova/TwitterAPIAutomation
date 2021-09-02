@@ -1,4 +1,5 @@
 ﻿using APIAutomation_HW.Apis.Models;
+using APIAutomation_HW.Utils.CommonMethods;
 using NUnit.Framework;
 using RestSharp;
 using RestSharp.Serialization.Json;
@@ -9,6 +10,7 @@ namespace APIAutomation_HW.Apis
 {
     public class Tweet : BaseApiTests
     {
+        readonly CommonMethods deserialize = new();
 
         public IRestResponse PostTweet(string message)
         {
@@ -19,8 +21,10 @@ namespace APIAutomation_HW.Apis
 
         public IRestResponse GetResponseOfResource(string apiResource)
         {
-            var request = new RestRequest();
-            request.Resource = apiResource;
+            var request = new RestRequest
+            {
+                Resource = apiResource
+            };
             return GetResponse(request);
         }
 
@@ -29,15 +33,9 @@ namespace APIAutomation_HW.Apis
             return Client.Execute(request);
         }
 
-        private T DeserialiseResponse<T>(IRestResponse response)
-        {
-            JsonDeserializer jsonDeserializer = new JsonDeserializer();
-            return jsonDeserializer.Deserialize<T>(response);
-        }
-
         public void AssertTweetWasPosted(string tweet, IRestResponse response)
         {
-            var result = DeserialiseResponse<List<CreateANewTweetModel>>(response);
+            var result = deserialize.DeserialiseResponse<List<CreateANewTweetModel>>(response);
             Assert.True(result.First().Text == tweet);
         }
     }

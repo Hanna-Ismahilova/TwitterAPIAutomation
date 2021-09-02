@@ -1,7 +1,7 @@
 ﻿using APIAutomation_HW.Apis.Models;
+using APIAutomation_HW.Utils.CommonMethods;
 using NUnit.Framework;
 using RestSharp;
-using RestSharp.Serialization.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,9 @@ namespace APIAutomation_HW.Apis.Api
 {
     public class UserLookup : BaseApiTests
     {
-        public  IRestResponse GetUserById_NotFound()
+        readonly CommonMethods deserialize = new();
+
+        public IRestResponse GetUserById_NotFound()
         {
             var request = new RestRequest("/2/users/2244994946", Method.GET);
             return GetResponse(request);
@@ -29,22 +31,12 @@ namespace APIAutomation_HW.Apis.Api
 
         private IRestResponse GetResponse(IRestRequest request)
         {
-
             return Client.Execute<List<GetUserByIdModel>>(request);
-
-        }
-
-        private T DeserialiseResponse<T>(IRestResponse response)
-        {
-            JsonDeserializer deserialize = new();
-            return deserialize.Deserialize<T>(response);
-
         }
 
         public void AssertGetResponse_GetUserById_NotFound(string detail, string title, string userIdValue, IRestResponse response)
-        {
-            
-            var output = DeserialiseResponse<List<GetUserByIdModel>>(response);
+        {            
+            var output = deserialize.DeserialiseResponse<List<GetUserByIdModel>>(response);
 
             var userNotFoundDetail = output.First()?.Errors?.First()?.Detail;
             var userNotFoundTitle = output.First()?.Errors?.First()?.Title;
@@ -57,7 +49,7 @@ namespace APIAutomation_HW.Apis.Api
 
         public void AssertGetResponse_GetUserById_DefaultPayload(string id, string name, string userName, IRestResponse response)
         {
-            var output = DeserialiseResponse<GetTweetModel>(response);
+            var output = deserialize.DeserialiseResponse<GetTweetModel>(response);
 
             var tweetId = output.Data?.Id; //null check "?". do that for each test
             var tweetUserName = output.Data?.Name;
@@ -70,7 +62,7 @@ namespace APIAutomation_HW.Apis.Api
 
         public void AssertGetResponse_GetUserByUsername_NotFound(string detail, string title, string userIdValue, string resourceId, IRestResponse response)
         {
-            var output = DeserialiseResponse<List<GetUserByIdModel>>(response);
+            var output = deserialize.DeserialiseResponse<List<GetUserByIdModel>>(response);
 
             var userNotFoundDetail = output.First()?.Errors?.First()?.Detail;
             var userNotFoundTitle = output.First()?.Errors?.First()?.Title;

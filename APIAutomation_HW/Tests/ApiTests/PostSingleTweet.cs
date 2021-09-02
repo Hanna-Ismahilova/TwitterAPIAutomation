@@ -3,10 +3,12 @@ using NUnit.Framework;
 
 namespace APIAutomation_HW.Steps.ApiSteps
 {
-    [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("Tweet")]
+    [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("API_Smoke")]
 
     public class PostSingleTweet : BaseApiTests
     {
+        [Category("Tweet")]
+
         [SetUp]
         public void Setup()
         {         
@@ -20,7 +22,6 @@ namespace APIAutomation_HW.Steps.ApiSteps
 
             var tweet = new Tweet();
             var response = tweet.PostTweet(tweetPost.CreateANewTweetModel.Text);
-            //tweet.GetResponseOfResource(response);
             tweet.AssertTweetWasPosted("Hello Twitter! This is my first created tweet via C#, RestSharp", response );
         }
 
