@@ -5,16 +5,16 @@ using System.IO;
 
 namespace APIAutomation_HW
 {
-   public class DuplicatePostWR
+   public class DuplicatePostDataWR
     {
-        public DuplicateTweetModel DuplicateTweetModel { get; set; }
+        public PostDuplicateTweetModel DuplicateTweetModel { get; set; }
 
 
-        public DuplicatePostWR()
+        public DuplicatePostDataWR()
         {
             using var stream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"/duplicatepost.json");
 
-            DuplicateTweetModel = JsonConvert.DeserializeObject<DuplicateTweetModel>(stream.ReadToEnd());
+            DuplicateTweetModel = JsonConvert.DeserializeObject<PostDuplicateTweetModel>(stream.ReadToEnd());
         }
 
     }

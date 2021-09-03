@@ -23,10 +23,10 @@ namespace APIAutomation_HW.Tests.ApiTests
         public void POST_Retweet_UnRetweet_SingleTweet()
         {
             var deserialize = new CommonMethods();
-            var retweet = new Retweet();
+            var retweet = new RetweetApi();
 
             var retweetResponse = retweet.PostReTweet();
-            var retweetResult = deserialize.DeserialiseResponse<RetweetModel>(retweetResponse);
+            var retweetResult = deserialize.DeserialiseResponse<PostRetweetModel>(retweetResponse);
 
             Assert.That(retweetResponse.Content, Is.Not.Empty);
             Assert.That(retweetResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
@@ -36,7 +36,7 @@ namespace APIAutomation_HW.Tests.ApiTests
             Assert.AreEqual(retweetResult.Text, "RT @Hanna74046784: Test");
 
             var unretweetResponse = retweet.PostUnReTweet();
-            var unretweetResult = deserialize.DeserialiseResponse<RetweetModel>(unretweetResponse);
+            var unretweetResult = deserialize.DeserialiseResponse<PostRetweetModel>(unretweetResponse);
 
             Assert.IsNotEmpty(unretweetResult.Id.ToString());
             Assert.AreEqual(unretweetResult.Text, "Test");

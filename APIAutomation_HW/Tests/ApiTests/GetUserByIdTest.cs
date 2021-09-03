@@ -24,7 +24,7 @@ namespace APIAutomation_HW.Tests.ApiTests
         [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
         public static void GET_UserById_200_NotFound()
         {
-            var userLookup = new UserLookup();
+            var userLookup = new UserLookupApi();
             var deserialize = new CommonMethods();
 
             var response = userLookup.GetUserById_NotFound();
@@ -43,7 +43,7 @@ namespace APIAutomation_HW.Tests.ApiTests
         [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
         public static void GET_UserById_200_DefaultPayload()
         {
-            var userLookup = new UserLookup();
+            var userLookup = new UserLookupApi();
             var deserialize = new CommonMethods();
 
             var response = userLookup.GetUserById_DefaultPayload();

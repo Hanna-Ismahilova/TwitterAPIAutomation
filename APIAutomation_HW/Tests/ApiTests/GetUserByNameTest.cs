@@ -25,7 +25,7 @@ namespace APIAutomation_HW.Tests.ApiTests
         [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
         public void GET_UserByName_200_NotFound()
         {
-            var userLookup = new UserLookup();
+            var userLookup = new UserLookupApi();
             var deserialize = new CommonMethods();
             var response = userLookup.GetUserByUsername_NotFound();
 

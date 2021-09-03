@@ -1,6 +1,6 @@
 ﻿namespace APIAutomation_HW.Utils.Settings
 {
-    public class Settings
+    public class AppSettings
     {
         public static readonly string baseUrl = "https://api.twitter.com";
         public static readonly string consumerKey = "isFtzuVFDOl20WZDHTqXlok9X";

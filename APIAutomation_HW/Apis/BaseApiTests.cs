@@ -4,7 +4,7 @@ using RestSharp.Authenticators;
 
 namespace APIAutomation_HW.Apis
 {
-    public class BaseApiTests : Settings
+    public class BaseApiTests : AppSettings
     {
         public RestClient Client;
 

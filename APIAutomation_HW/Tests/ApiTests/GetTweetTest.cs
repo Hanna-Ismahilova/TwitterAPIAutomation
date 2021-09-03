@@ -25,7 +25,7 @@ namespace APIAutomation_HW.Steps
         public void GET_SingleTweet()
         {
             var deserialize = new CommonMethods();
-            var tweetLookup = new TweetLookup();
+            var tweetLookup = new TweetLookupApi();
             
             var response = tweetLookup.GetSingleTweet();
             var output = deserialize.DeserialiseResponse<GetTweetDataModel>(response);

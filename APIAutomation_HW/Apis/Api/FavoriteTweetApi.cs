@@ -2,7 +2,7 @@
 
 namespace APIAutomation_HW.Apis.Api
 {
-    public class FavoriteTweet : BaseApiTests
+    public class FavoriteTweetApi : BaseApiTests
     {
         public IRestResponse PostTweetToFavorite()
         {

@@ -24,10 +24,10 @@ namespace APIAutomation_HW.Tests.ApiTests
         public void POST_TweetToFromFavorite()
         {
             var deserialize = new CommonMethods();
-            var favoriteTweet = new FavoriteTweet();
+            var favoriteTweet = new FavoriteTweetApi();
 
             var favoriteTweetResponse = favoriteTweet.PostTweetToFavorite();
-            var favoriteTweetResult = deserialize.DeserialiseResponse<FavoriteTweetModel>(favoriteTweetResponse);
+            var favoriteTweetResult = deserialize.DeserialiseResponse<PostFavoriteTweetModel>(favoriteTweetResponse);
 
             Assert.That(favoriteTweetResponse.Content, Is.Not.Empty);
             Assert.That(favoriteTweetResponse.StatusCode, Is.EqualTo(HttpStatusCode.OK));
@@ -36,7 +36,7 @@ namespace APIAutomation_HW.Tests.ApiTests
             Assert.True(favoriteTweetResult.Favorited);
 
             var deleteFavoriteTweetResponse = favoriteTweet.DeleteTweetFromFavorite();
-            var deletedFavoriteTweetResult = deserialize.DeserialiseResponse<FavoriteTweetModel>(deleteFavoriteTweetResponse);
+            var deletedFavoriteTweetResult = deserialize.DeserialiseResponse<PostFavoriteTweetModel>(deleteFavoriteTweetResponse);
 
             Assert.False(deletedFavoriteTweetResult.Favorited);
         }
