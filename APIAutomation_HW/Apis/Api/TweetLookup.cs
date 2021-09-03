@@ -8,7 +8,7 @@ namespace APIAutomation_HW.Apis
     {
         public IRestResponse GetSingleTweet()
         {
-            var request = new RestRequest("/2/tweets/1431598792743301128", Method.GET);
+            var request = new RestRequest("/1.1/statuses/show/1431598792743301128.json", Method.GET);
             return GetResponse(request);
         }
 

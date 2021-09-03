@@ -11,7 +11,7 @@ using System.Linq;
 namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Category("API_Smoke")]
-    public class GetUserById : BaseApiTests
+    public class GetUserByIdTest : BaseApiTests
     {
         [Category("User_Lookup")]
 

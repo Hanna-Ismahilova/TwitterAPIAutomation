@@ -11,7 +11,7 @@ namespace APIAutomation_HW.Steps.ApiSteps
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("API_Smoke")]
 
-    public class PostSingleTweet : BaseApiTests
+    public class PostSingleTweetTest : BaseApiTests
     {
         [Category("Tweet")]
 

@@ -9,7 +9,7 @@ namespace APIAutomation_HW.Steps
 {
     [TestFixture, Category("API_Smoke")]
 
-    public class GetTweet : BaseApiTests
+    public class GetTweetTest : BaseApiTests
 
     {
         [Category("Tweet_Lookup")]
@@ -25,19 +25,17 @@ namespace APIAutomation_HW.Steps
         public void GET_SingleTweet()
         {
             var deserialize = new CommonMethods();
-
             var tweetLookup = new TweetLookup();
+            
             var response = tweetLookup.GetSingleTweet();
-
-          
-            var output = deserialize.DeserialiseResponse<GetTweetModel>(response);
+            var output = deserialize.DeserialiseResponse<GetTweetDataModel>(response);
 
             Assert.That(response.Content, Is.Not.Empty);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(response.ResponseStatus.Equals(ResponseStatus.Completed));
 
-            Assert.AreEqual(output.Data.Id, "1431598792743301128");
-            Assert.AreEqual(output.Data.Text, "Test");
+            Assert.That(output.Id, Is.EqualTo(1431598792743301128));
+            Assert.AreEqual(output.Text, "Test");
         }
     }
 }

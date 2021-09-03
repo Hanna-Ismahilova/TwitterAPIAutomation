@@ -19,21 +19,10 @@ namespace APIAutomation_HW.Apis
             return GetResponse(request);
         }
 
-        public IRestResponse GetResponseOfResource(string apiResource)
-        {
-            var request = new RestRequest
-            {
-                Resource = apiResource
-            };
-            return GetResponse(request);
-        }
-
         private IRestResponse GetResponse(IRestRequest request)
         {
             return Client.Execute(request);
         }
-
-        //TODO: Assert move to test > arrange/act/assert approach
     }
 }
 

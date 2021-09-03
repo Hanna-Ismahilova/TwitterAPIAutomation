@@ -7,8 +7,6 @@ namespace APIAutomation_HW.Apis.Api
 {
     public class UserLookup : BaseApiTests
     {
-        readonly CommonMethods deserialize = new();
-
         public IRestResponse GetUserById_NotFound()
         {
             var request = new RestRequest("/2/users/2244994946", Method.GET);

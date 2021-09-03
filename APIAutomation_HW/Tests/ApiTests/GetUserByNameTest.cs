@@ -12,7 +12,7 @@ using System.Net;
 namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("API_Smoke")]
-    public class GetUserByName : BaseApiTests
+    public class GetUserByNameTest : BaseApiTests
     {
         [Category("User_Lookup")]
 
