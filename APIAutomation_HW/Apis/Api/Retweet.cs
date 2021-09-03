@@ -7,7 +7,6 @@ namespace APIAutomation_HW.Apis.Api
         public IRestResponse PostReTweet()
         {
             var request = new RestRequest("/1.1/statuses/retweet/1431598792743301128.json", Method.POST);
-            //request.AddParameter("status", message, ParameterType.GetOrPost);
             return GetResponse(request);
         }
 

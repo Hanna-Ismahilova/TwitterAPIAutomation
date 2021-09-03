@@ -7,14 +7,14 @@ namespace APIAutomation_HW
 {
    public class PostResponseDataWR
     {
-        public CreateANewTweetModel CreateANewTweetModel { get; set; }
+        public NewTweetModel CreateANewTweetModel { get; set; }
 
         public PostResponseDataWR()
         {
 
             using var stream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"/createanewtweet.json");
 
-            CreateANewTweetModel = JsonConvert.DeserializeObject<CreateANewTweetModel>(stream.ReadToEnd());
+            CreateANewTweetModel = JsonConvert.DeserializeObject<NewTweetModel>(stream.ReadToEnd());
 
         }
     }

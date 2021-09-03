@@ -8,9 +8,6 @@ namespace APIAutomation_HW.Apis
     {
         public RestClient Client;
 
-        //public  IRestRequest Request;
-        //public  IRestResponse Response;
-
         public BaseApiTests()
         {
             Client = new RestClient(baseUrl)

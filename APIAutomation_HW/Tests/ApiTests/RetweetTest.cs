@@ -20,7 +20,7 @@ namespace APIAutomation_HW.Tests.ApiTests
         }
 
         [Test, Order(1), Description("Endpoint: 1.1/statuses/retweet/:id.json, 1.1/statuses/unretweet/:id.json. Used: Authentication to Twitter")]
-        public void Retweet_UnRetweet_SingleTweet()
+        public void POST_Retweet_UnRetweet_SingleTweet()
         {
             var deserialize = new CommonMethods();
             var retweet = new Retweet();

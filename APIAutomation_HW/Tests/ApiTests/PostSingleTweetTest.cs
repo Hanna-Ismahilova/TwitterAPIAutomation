@@ -30,7 +30,7 @@ namespace APIAutomation_HW.Steps.ApiSteps
             var tweet = new Tweet();
             var response = tweet.PostTweet(tweetPost.CreateANewTweetModel.Text);
 
-            var result = deserialize.DeserialiseResponse<List<CreateANewTweetModel>>(response);
+            var result = deserialize.DeserialiseResponse<List<NewTweetModel>>(response);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(response.ResponseStatus, Is.EqualTo(ResponseStatus.Completed));
