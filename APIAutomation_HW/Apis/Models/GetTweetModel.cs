@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace APIAutomation_HW.Apis.Models
+﻿namespace APIAutomation_HW.Apis.Models
 {
     public class GetTweetModel
     {  

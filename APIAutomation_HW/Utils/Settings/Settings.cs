@@ -7,5 +7,6 @@
         public static readonly string consumerSecret = "ITajshUha8NrgwoQuTsQZWKlTEiyeKzwHvJ4gaWauZInJ8BKo2";
         public static readonly string accessToken = "1431259443673681929-hzMv05kRTKe7Gnv5I8zyuvDjLWOuek";
         public static readonly string accessTokenSecret = "qgbtD398fu3a3nZgU7NR2Mc8MtQ4wLSzuI5Yb4TMZ9PhO";
+        //Note: if you have unauthorized error try to regenerate access keys and tokens
     }
 }

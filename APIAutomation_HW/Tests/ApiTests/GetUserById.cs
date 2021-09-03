@@ -1,6 +1,12 @@
 ﻿using APIAutomation_HW.Apis;
 using APIAutomation_HW.Apis.Api;
 using NUnit.Framework;
+using System.Net;
+using RestSharp;
+using APIAutomation_HW.Utils.CommonMethods;
+using APIAutomation_HW.Apis.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace APIAutomation_HW.Tests.ApiTests
 {
@@ -19,31 +25,39 @@ namespace APIAutomation_HW.Tests.ApiTests
         public static void GET_UserById_200_NotFound()
         {
             var userLookup = new UserLookup();
+            var deserialize = new CommonMethods();
+
             var response = userLookup.GetUserById_NotFound();
 
             Assert.That(response.ErrorMessage, Is.Not.Empty);
-            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
-            Assert.That(response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(response.ResponseStatus.Equals(ResponseStatus.Completed));
 
-            userLookup.AssertGetResponse_GetUserById_NotFound("Could not find user with id: [2244994946].", "Not Found Error", "2244994946", response);
+            var output = deserialize.DeserialiseResponse<List<GetUserByIdModel>>(response);
+
+            Assert.AreEqual(output.First().Errors.First().Detail, "Could not find user with id: [2244994946].");
+            Assert.AreEqual(output.First().Errors.First().Title, "Not Found Error");
+            Assert.AreEqual(output.First().Errors.First().Value, "2244994946");
         }
 
         [Test, Description("Endpoint: 2/users/{:id}. Used: Authentication to Twitter")]
         public static void GET_UserById_200_DefaultPayload()
         {
             var userLookup = new UserLookup();
+            var deserialize = new CommonMethods();
+
             var response = userLookup.GetUserById_DefaultPayload();
-            
+   
+            var output = deserialize.DeserialiseResponse<GetTweetModel>(response);
 
             Assert.That(response.ErrorMessage, Is.Not.Empty);
-            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
-            Assert.That(response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(response.ResponseStatus.Equals(ResponseStatus.Completed));
 
-            userLookup.AssertGetResponse_GetUserById_DefaultPayload("2244994945", "Twitter Dev", "TwitterDev", response);
+            Assert.AreEqual(output.Data.Id, "2244994945");
+            Assert.AreEqual(output.Data.Name, "Twitter Dev");
+            Assert.AreEqual(output.Data.Username, "TwitterDev");
         }
-
-
-
     }
 }
 

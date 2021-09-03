@@ -1,21 +1,21 @@
-﻿using APIAutomation_HW.Apis.Models;
-using APIAutomation_HW.Utils.CommonMethods;
-using NUnit.Framework;
-using RestSharp;
-using RestSharp.Serialization.Json;
-using System.Collections.Generic;
-using System.Linq;
+﻿using RestSharp;
+
 
 namespace APIAutomation_HW.Apis
 {
     public class Tweet : BaseApiTests
     {
-        readonly CommonMethods deserialize = new();
-
         public IRestResponse PostTweet(string message)
         {
             var request = new RestRequest("1.1/statuses/update.json", Method.POST);
             request.AddParameter("status", message, ParameterType.GetOrPost);
+            return GetResponse(request);
+        }
+
+        public IRestResponse DeleteTweet(ulong id)
+        { 
+            var request = new RestRequest("1.1/statuses/destroy/{:id}.json", Method.POST);
+            request.AddUrlSegment(":id", id);
             return GetResponse(request);
         }
 
@@ -33,11 +33,7 @@ namespace APIAutomation_HW.Apis
             return Client.Execute(request);
         }
 
-        public void AssertTweetWasPosted(string tweet, IRestResponse response)
-        {
-            var result = deserialize.DeserialiseResponse<List<CreateANewTweetModel>>(response);
-            Assert.True(result.First().Text == tweet);
-        }
+        //TODO: Assert move to test > arrange/act/assert approach
     }
 }
 

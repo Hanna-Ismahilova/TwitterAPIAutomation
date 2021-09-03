@@ -1,6 +1,13 @@
 ﻿using APIAutomation_HW.Apis;
 using APIAutomation_HW.Apis.Api;
+using APIAutomation_HW.Apis.Models;
+using APIAutomation_HW.Utils.CommonMethods;
 using NUnit.Framework;
+using RestSharp;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+
 
 namespace APIAutomation_HW.Tests.ApiTests
 {
@@ -19,13 +26,19 @@ namespace APIAutomation_HW.Tests.ApiTests
         public void GET_UserByName_200_NotFound()
         {
             var userLookup = new UserLookup();
+            var deserialize = new CommonMethods();
             var response = userLookup.GetUserByUsername_NotFound();
 
-            Assert.That(response.ErrorMessage, Is.Not.Empty);
-            Assert.That(response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.OK));
-            Assert.That(response.ResponseStatus.Equals(RestSharp.ResponseStatus.Completed));
+            var output = deserialize.DeserialiseResponse<List<GetUserByIdModel>>(response);
 
-            userLookup.AssertGetResponse_GetUserByUsername_NotFound("Could not find user with username: [TwitterDec].", "Not Found Error", "TwitterDec", "TwitterDec", response);
+            Assert.That(response.ErrorMessage, Is.Not.Empty);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(response.ResponseStatus.Equals(ResponseStatus.Completed));
+
+            Assert.AreEqual(output.First().Errors.First().Detail, "Could not find user with username: [TwitterDec].");
+            Assert.AreEqual(output.First().Errors.First().Title, "Not Found Error");
+            Assert.AreEqual(output.First().Errors.First().Value, "TwitterDec");
+            Assert.AreEqual(output.First().Errors.First().Resource_id, "TwitterDec");         
         }
     }
 }

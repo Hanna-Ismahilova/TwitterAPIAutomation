@@ -1,8 +1,8 @@
 ﻿namespace APIAutomation_HW.Apis.Models
 {
-    public class CreateANewTweetModel
+    public class CreateANewTweetModel: BaseTweetModel
     {
-        public string Text { get; set; }
+        
 
     }
 }
