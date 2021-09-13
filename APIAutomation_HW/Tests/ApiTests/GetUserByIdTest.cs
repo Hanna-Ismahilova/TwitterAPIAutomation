@@ -54,7 +54,7 @@ namespace APIAutomation_HW.Tests.ApiTests
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(response.ResponseStatus.Equals(ResponseStatus.Completed));
 
-            Assert.AreEqual(output.Data.Id, "2244994945");
+            Assert.AreEqual(output.Data.Id, 2244994945);
             Assert.AreEqual(output.Data.Name, "Twitter Dev");
             Assert.AreEqual(output.Data.Username, "TwitterDev");
         }
