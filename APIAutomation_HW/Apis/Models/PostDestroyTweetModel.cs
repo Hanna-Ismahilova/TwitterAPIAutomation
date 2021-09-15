@@ -2,5 +2,6 @@
 {
     public class PostDestroyTweetModel : BaseTweetModel
     {
+
     }
 }
