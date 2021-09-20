@@ -3,7 +3,7 @@
 
 namespace APIAutomation_HW.Apis
 {
-    public class TweetApi : BaseApiTests
+    public class TweetApi : BaseApi
     {
         public IRestResponse PostTweet(string message)
         {

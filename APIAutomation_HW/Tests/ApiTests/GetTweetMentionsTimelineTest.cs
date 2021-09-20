@@ -10,9 +10,10 @@ using System.Net;
 namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Category("API_Smoke")]
-    public class GetTweetHomeTimelineTest : BaseApi
+
+    public class GetTweetMentionsTimelineTest : BaseApi
     {
-        [Category("Tweet_Home_Timeline")]
+        [Category("Tweet_Mentions_Timeline")]
 
         [SetUp]
         public void Setup()
@@ -20,19 +21,20 @@ namespace APIAutomation_HW.Tests.ApiTests
             AuthTwitter();
         }
 
-        [Test, Description("Endpoint: /1.1/statuses/home_timeline.json. Used: Authentication to Twitter")]
-        public void GET_TweetHomeTimeline()
+        [Test, Description("Endpoint: /1.1/statuses/mentions_timeline.json. Used: Authentication to Twitter")]
+        public void GET_TweetMentionsTimeline()
         {
             var deserialize = new CommonMethods();
-            var tweetHomeTimeline = new TweetHomeTimelineApi();
+            var tweetMentionsTimeline = new TweetMentionsTimelineApi();
 
-            var response = tweetHomeTimeline.GetTweetHomeTimeline();
-            var output = deserialize.DeserialiseResponse<List<GetTweetHomeTimelineModel>>(response);
+            var response = tweetMentionsTimeline.GetTweetMentionsTimeline();
+            var output = deserialize.DeserialiseResponse<List<GetTweetMentionTimelineModel>>(response);
 
             Assert.That(response.Content, Is.Not.Empty);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            Assert.IsNotEmpty(output.FirstOrDefault().Text);
+            Assert.AreEqual(output.FirstOrDefault().Text, "@Hanna74046784 Mention post");
         }
+
     }
 }

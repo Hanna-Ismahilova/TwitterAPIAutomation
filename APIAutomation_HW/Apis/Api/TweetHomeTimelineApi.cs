@@ -1,10 +1,9 @@
 ﻿using APIAutomation_HW.Apis.Models;
 using RestSharp;
-using System.Collections.Generic;
 
 namespace APIAutomation_HW.Apis.Api
 {
-    public class TweetTimelinesApi : BaseApiTests
+    public class TweetHomeTimelineApi : BaseApi
     {
         public IRestResponse GetTweetHomeTimeline()
         {

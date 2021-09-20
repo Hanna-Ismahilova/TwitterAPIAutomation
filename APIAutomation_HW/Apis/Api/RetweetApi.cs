@@ -2,7 +2,7 @@
 
 namespace APIAutomation_HW.Apis.Api
 {
-    public class RetweetApi : BaseApiTests
+    public class RetweetApi : BaseApi
     {
         public IRestResponse PostReTweet()
         {

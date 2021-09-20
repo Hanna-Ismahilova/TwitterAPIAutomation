@@ -10,7 +10,7 @@ namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("API_Smoke")]
 
-    public class PostFavoriteTweetTest : BaseApiTests
+    public class PostFavoriteTweetTest : BaseApi
     {
         [Category("Tweet")]
 

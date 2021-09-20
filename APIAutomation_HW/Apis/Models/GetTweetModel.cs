@@ -3,7 +3,6 @@
     public class GetTweetModel
     {  
         public GetTweetDataModel Data { get; set; }
-
     }
 }
 

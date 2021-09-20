@@ -9,7 +9,7 @@ using System.Net;
 namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Parallelizable(ParallelScope.Fixtures), Category("API_Smoke")]
-    public class PostRetweetTest : BaseApiTests
+    public class PostRetweetTest : BaseApi
     {
         [Category("Tweet")]
 

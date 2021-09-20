@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace APIAutomation_HW.Apis.Api
 {
-    public class UserLookupApi : BaseApiTests
+    public class UserLookupApi : BaseApi
     {
         public IRestResponse GetUserById_NotFound()
         {

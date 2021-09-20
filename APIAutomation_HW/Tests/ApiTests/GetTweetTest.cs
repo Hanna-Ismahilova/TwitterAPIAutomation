@@ -9,7 +9,7 @@ namespace APIAutomation_HW.Steps
 {
     [TestFixture, Category("API_Smoke")]
 
-    public class GetTweetTest : BaseApiTests
+    public class GetTweetTest : BaseApi
 
     {
         [Category("Tweet_Lookup")]

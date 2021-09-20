@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace APIAutomation_HW.Apis
 {
-    public class TweetLookupApi : BaseApiTests
+    public class TweetLookupApi : BaseApi
     {
         public IRestResponse GetSingleTweet()
         {

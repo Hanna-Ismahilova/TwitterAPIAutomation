@@ -11,7 +11,7 @@ namespace APIAutomation_HW.Steps.ApiSteps
 {
     [TestFixture, Category("API_Smoke")]
 
-    public class PostSingleTweetTest : BaseApiTests
+    public class PostSingleTweetTest : BaseApi
     {
         [Category("Tweet")]
 
