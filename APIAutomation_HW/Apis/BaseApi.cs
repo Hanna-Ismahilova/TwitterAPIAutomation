@@ -22,8 +22,5 @@ namespace APIAutomation_HW.Apis
             
             return oAuth1Authenticator;
         }
-
-
-
     }
 }

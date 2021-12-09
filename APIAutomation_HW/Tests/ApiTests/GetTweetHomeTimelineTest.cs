@@ -6,12 +6,15 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using NLog;
 
 namespace APIAutomation_HW.Tests.ApiTests
 {
     [TestFixture, Category("API_Smoke")]
     public class GetTweetHomeTimelineTest : BaseApi
     {
+        public static Logger logger = LogManager.GetCurrentClassLogger();
+
         [Category("Tweet_Home_Timeline")]
 
         [SetUp]
@@ -23,6 +26,8 @@ namespace APIAutomation_HW.Tests.ApiTests
         [Test, Description("Endpoint: /1.1/statuses/home_timeline.json. Used: Authentication to Twitter")]
         public void GET_TweetHomeTimeline()
         {
+            logger.Trace("The test run is started");
+
             var deserialize = new CommonMethods();
             var tweetHomeTimeline = new TweetHomeTimelineApi();
 
@@ -31,6 +36,8 @@ namespace APIAutomation_HW.Tests.ApiTests
 
             Assert.That(response.Content, Is.Not.Empty);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+
+            logger.Error(response.StatusCode);
 
             Assert.IsNotEmpty(output.FirstOrDefault().Text);
         }
