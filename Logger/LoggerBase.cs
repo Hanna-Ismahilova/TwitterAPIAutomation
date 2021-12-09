@@ -2,7 +2,7 @@
 
 namespace LoggerLayer
 {
-    public class ApplicationBase
+    public class LoggerBase
     {
         public static Logger logger = LogManager.GetCurrentClassLogger();
     }
